@@ -58,7 +58,10 @@ def SubmitKoeff():
             return
     BearbeiteteFunktion=Funktion.Funktion(Grad,Koeff)
     #print(BearbeiteteFunktion.printMe())
-    Nullstellen=InitialisierungNewtonVerfahren.InitialisierungNewtonVerfahren(BearbeiteteFunktion)    
+    try:
+        Nullstellen=InitialisierungNewtonVerfahren.InitialisierungNewtonVerfahren(BearbeiteteFunktion)    
+    except Exception:
+        return
     ErgebnisLabel=Label(window, text="Alle gefundenen Nullstellen:").grid(row=8,column=0,columnspan=4)
     try:
         for i in range (lenNullstellenAlt):
