@@ -9,13 +9,25 @@ import Funktion
 def NewtonVerfahren(f, x0):
     x=x0
     i=0
+    xvorher=x
+    xvorvorher=xvorher
     fAbleitung=f.Ableitung()
-    while not (f.Wert(x)==0 or (abs(f.Wert(x))<(10**(-15))or i>20)):
+    while not ((f.Wert(x)==0 or 
+                abs(f.Wert(x))<(10**(-15))) or 
+               (i>20 and ((abs(f.Wert(xvorher))<abs(f.Wert(x)) ) or
+                        abs(x-xvorher)>abs(xvorher-xvorvorher) or 
+                        x==xvorher or x==xvorvorher)) or
+               i>50
+               ):
+        
+        xvorvorher=xvorher
+        xvorher=x
         try: x=x-f.Wert(x)/fAbleitung.Wert(x)
         except  ZeroDivisionError:
             return x
         i+=1
     return x
+
 
 def NewtonVerfahrenPolynom(f, x0, NSTListe):
     
