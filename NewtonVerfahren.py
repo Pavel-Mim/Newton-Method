@@ -13,8 +13,7 @@ def NewtonVerfahren(f, x0):
     while not (f.Wert(x)==0 or (abs(f.Wert(x))<(10**(-15))or i>20)):
         try: x=x-f.Wert(x)/fAbleitung.Wert(x)
         except  ZeroDivisionError:
-            x=x+1  #Anderes Überlegen
-        print(x)
+            return x
         i+=1
     return x
 
@@ -42,11 +41,16 @@ def NewtonVerfahrenPolynom(f, x0, NSTListe):
            
         try: x=x-f.Wert(x)/(fAbleitung.Wert(x)-Divisionsabzug)
         except  ZeroDivisionError:
-            #x=1  #Anderes Überlegen
             return x
-        print(x)
         i+=1
     return x
+
+
+
+
+
+
+
 
 
 # Koeff=[-2,0,1]

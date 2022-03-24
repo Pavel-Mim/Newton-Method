@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Sat Feb 26 19:46:18 2022
@@ -10,7 +11,7 @@ import Funktion
 import InitialisierungNewtonVerfahren
 
 window=Tk()
-window.geometry("375x300")
+window.geometry("375x200")
 window.title("Newton-Verfahren")
 #grid=grid(window)
 
@@ -20,7 +21,7 @@ def SubmitGrad():
     global KoeffEntryList
     KoeffEntryList=[]
     try:
-        Grad=int(GradEntry.get())
+        Grad=abs(int(GradEntry.get()))
     except ValueError:
         messagebox.showerror(title="Value Error",message="Sie müssen eine natürliche Zahl eingeben (z.B: 5)")
         return
@@ -36,9 +37,9 @@ def SubmitGrad():
         KoeffButton.grid(row=6,column=0,columnspan=3)
         
     if (Grad>=2):
-        window.geometry(f"{(Grad+1)*125}x300")  
+        window.geometry(f"{(Grad+1)*125}x200")  
     elif(Grad==1 or Grad==0):
-        window.geometry("375x300")
+        window.geometry("375x200")
         
     
 def SubmitKoeff():
@@ -52,12 +53,11 @@ def SubmitKoeff():
     for i in range (Grad+1):
         Hilfe=KoeffEntryList[i]
         try:
-           Koeff.append(float(Hilfe.get()))#grid(row=5,column=i).get()))
+           Koeff.append(float(Hilfe.get()))
         except ValueError:
-            messagebox.showerror(title="Value Error",message="Sie müssen eine Gleitkommazahl eingeben (z.B: 3.75)")  
+            messagebox.showerror(title="Value Error", message="Sie müssen eine Gleitkommazahl eingeben (z.B: 3.75)")  
             return
     BearbeiteteFunktion=Funktion.Funktion(Grad,Koeff)
-    #print(BearbeiteteFunktion.printMe())
     try:
         Nullstellen=InitialisierungNewtonVerfahren.InitialisierungNewtonVerfahren(BearbeiteteFunktion)    
     except Exception:
@@ -73,12 +73,13 @@ def SubmitKoeff():
             KoeffLabel=Label(window, text=Nullstellen[i]).grid(row=9,column=i)
         lenNullstellenAlt=len(Nullstellen)
     else:
-       KoeffLabel=Label(window, text="Es wurde keine Nullstelle gefunden").grid(row=9,column=0, columnspan=3) 
+       KoeffLabel=Label(window, text="Es wurde keine Nullstelle gefunden"
+                        ).grid(row=9,column=0, columnspan=3) 
        lenNullstellenAlt=3
        
        
        
-GradLabel=Label(window, text="Geben Sie den Grad des Polynoms als natürliche Zahl ein:").grid(row=0,column=0,columnspan=3)
+GradLabel=Label(window,text="Geben Sie den Grad des Polynoms als natürliche Zahl ein:").grid(row=0,column=0,columnspan=3)
 GradEntry=Entry(window)
 GradEntry.grid(row=1,column=0,columnspan=3)
 GradButton=Button(window,text="Grad bestätigen",command=SubmitGrad)

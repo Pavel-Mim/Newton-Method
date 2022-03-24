@@ -31,9 +31,9 @@ class Funktion:
     def printMe(self):
         Ausgabe=""
         for i in range (len(self.Koeffizienten)):
-            if (self.Koeffizienten[i]!=0):      #falls der Koeffizient=0 muss das nicht gedruckt werden
+            if (self.Koeffizienten[i]!=0):
                 Ausgabe=Ausgabe+ str(self.Koeffizienten[i])
                 Ausgabe=Ausgabe+"x^"+str(i)+"+"
-        Ausgabe=Ausgabe[:-1]    #Um das letzte Plus zu entfernen
+        Ausgabe=Ausgabe[:-1]
         return Ausgabe  
         
